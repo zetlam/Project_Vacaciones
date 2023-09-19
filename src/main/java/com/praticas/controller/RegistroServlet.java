@@ -33,22 +33,26 @@ public class RegistroServlet extends HttpServlet {
 			try {
 				registrado = f.resgistrarUsuario(nuevoUsuario);
 				if(registrado) {
-					response.sendRedirect("index2.jsp");
+					//request.getSession().setAttribute("usuario", nuevoUsuario);
+					response.sendRedirect("index.jsp");
 			} else {
-				salida.write("<html><head></head><body>EL NOMBRE YA EXISTE</body></html>");
+				request.setAttribute("error", "Nome ya existe no coiciden");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
 			} 
 			} catch (SQLException e) {
 				e.printStackTrace();
 				
 				if(e.getErrorCode() == 1062) {
-					salida.write("<html><head></head><body>EL NOMBRE YA EXISTE</body></html>");
+					request.setAttribute("error", "Las claves no coiciden");
+					request.getRequestDispatcher("error.jsp").forward(request, response);
 				} else {
 					response.sendRedirect("ErrorInterno.html");
 				} 
 			}
 			
 		}else {
-			salida.write("<html><head></head><body>Las claves son iguales</body></html>");
+			request.setAttribute("error", "Las claves no coiciden");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 			
 		}
 		salida.close();

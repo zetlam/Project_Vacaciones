@@ -20,66 +20,16 @@
         <!-- Imagem acima do formulário -->
         <img id="fotoLogin" src="Imagen/imgPrincipal.png" alt="Imagem de Empreza" class="img-fluid">
         
-        <h1 class="text-center mt-3">Lista de solicitudes de vacaciones</h1>
 
-		<div style="background-color: #e6f7ff;" class="container text-center mt-5">
-    <div class="menu">
-        <nav style="background-color: #e6f7ff; margin-bottom: 40px;">
-            <ul class="nav justify-content-center">
-                               <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
-                    <% if (usuario.getTipo().equals(TipoUsuario.TRABAJADOR)) { %>
-                        <li class="nav-item">
-                        <a class="nav-link" href="index2.jsp">Solicitude</a>
-                    </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="EstadoPeticion.jsp">Estado da solicitude</a>
-                        </li>
-                    <% } else if (usuario.getTipo().equals(TipoUsuario.GESTOR)) { %>                      
-                        <li class="nav-item">
-                            <a class="nav-link" href="index2.jsp">Solicitude</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="EstadoPeticion.jsp">Estado de solicitude</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="Peticiones.jsp">Xestionar solicitudes</a>
-                        </li>
-                    <% } %>
-                
-            </ul>
-        </nav>
-    </div>
-</div>
+
 		
-        <!-- Formulário de pesquisa -->
-        <form action="buscarSolicitacoes" method="get">
-            <div class="form-row">
-                <div class="form-group col-md-3">
-                    <label for="ano">Ano:</label>
-                    <input type="text" class="form-control" id="ano" name="ano">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="usuario">Usuário:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario">
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="estado">Estado:</label>
-                    <select class="form-control" id="estado" name="estado">
-                       <option value="">Seleccione o estado</option>
-                        <option value="ACEPTADA">Aprobado</option>
-                        <option value="PENDIENTE">Pendente</option>
-                        <option value="RECHAZADA">Rexeitado</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <button type="button" class="btn btn-primary mt-4" onclick="buscarSolicitaciones();">Buscar</button>
-                </div>
+        
             </div>
              <% String error = (String)request.getAttribute("error"); %> 
                             <% if(error != null){%>
                             <div><%=error%></div>
                             <%} %>
-        </form>
+       
 
         <!-- Tabela de solicitações de férias -->
         <table class="table table-striped" id="solicitacoesTable">
